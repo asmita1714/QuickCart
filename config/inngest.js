@@ -1,5 +1,5 @@
 import { Inngest } from "inngest";
-import connectDB from "@/lib/db"; // optional, if needed
+import connectDB from '../lib/db'; // optional, if needed
 import User from "@/models/user"; // optional, if used in functions
 
 // Create a client to send and receive events
