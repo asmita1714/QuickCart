@@ -1,27 +1,19 @@
+// lib/db.js
 import mongoose from "mongoose";
 
-let cached = global.mongoosee
+const connectDB = async () => {
+  try {
+    if (mongoose.connection.readyState >= 1) return;
 
-if (!cached) {
-    cached = global.mongoose = { conn :null,promise:null }
-}
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
-async function connectDB() {
-    if (cached.conn) {
-        return cached.conn
-    }
-    if (!cached.promise){
-        const opts = {
-            bufferCommands:false
-        }
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+  }
+};
 
-        cached.promise = (await mongoose.connect('${process.env.MONGODB_URI}/QuickCart',opts)).isObjectIdOrHexString(mongoose => {
-            return mongoose
-        })
-    }
-
-    cached.conn = await cached.promise
-    return cached.conn
-}
-
-export default connectDB
+export default connectDB;

@@ -1,5 +1,5 @@
 import { Inngest } from "inngest";
-import connectDB from '../lib/db'; // optional, if needed
+import connectDB from '@/lib/db'; // optional, if needed
 import User from "@/models/user"; // optional, if used in functions
 
 // Create a client to send and receive events
@@ -9,7 +9,7 @@ export const inngest = new Inngest({ id: "quickcart-next" });
 export const syncUserCreation = inngest.createFunction(
   { id: "sync-user-from-clerk" },
   { event: "user/created" },
-  async ({ event, step }) => {
+  async ({ event }) => {
 
     const { id, first_name, last_name, email_addresses, image_url } = event.data;
 
@@ -29,7 +29,7 @@ export const syncUserCreation = inngest.createFunction(
 export const syncUserUpdation = inngest.createFunction(
   { id: "sync-user-updated" },
   { event: "user/updated" },
-  async ({ event, step }) => {
+  async ({ event }) => {
     const { id, first_name, last_name, email_addresses, image_url } = event.data;
 
     const userData = {
@@ -47,7 +47,7 @@ export const syncUserUpdation = inngest.createFunction(
 export const syncUserDeletion = inngest.createFunction(
   { id: "sync-user-deleted" },
   { event: "user/deleted" },
-  async ({ event, step }) => {
+  async ({ event }) => {
 
     const { id } = event.data;
 
