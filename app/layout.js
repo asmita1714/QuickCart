@@ -13,7 +13,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+<<<<<<< HEAD
     <ClerkProvider>
+=======
+     <ClerkProvider>
+>>>>>>> 0def79537be5346dd9fb40264f526f8a774bf5ec
       <html lang="en">
         <body className={'${outfit.className} antialiased text-gray-700'} >
           <Toaster />
@@ -23,5 +27,10 @@ export default function RootLayout({ children }) {
         </body>
       </html>
     </ClerkProvider>
+<<<<<<< HEAD
   );
 }
+=======
+  );
+}
+>>>>>>> 0def79537be5346dd9fb40264f526f8a774bf5ec
